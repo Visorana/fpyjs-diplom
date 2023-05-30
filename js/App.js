@@ -17,10 +17,17 @@ class App {
    * Инициализирует всплывающее окна
    * */
   static initModals() {
+    const fileUploaderElement = $('.ui.modal.file-uploader-modal')[0];
+    const filePreviewerElement = $('.ui.modal.uploaded-previewer-modal')[0];
+
     this.modals = {
-      fileUploader: new FileUploaderModal($('.ui.modal.file-uploader-modal').modal({closable: false})),
-      filePreviewer: new PreviewModal($('.ui.modal.uploaded-previewer-modal').modal({closable: false})),
-    }
+      fileUploader: new FileUploaderModal(fileUploaderElement),
+      filePreviewer: new PreviewModal(filePreviewerElement),
+    };
+
+    // Apply modal options after creating the modal objects
+    $(fileUploaderElement).modal({ closable: false });
+    $(filePreviewerElement).modal({ closable: false });
   }
 
    /**
